@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:payment_card/config/screen_size.dart';
-import 'package:payment_card/utils/styles.dart';
 import 'package:payment_card/view/My%20Cart/widgets/order_info.dart';
 import 'package:payment_card/view/My%20Cart/widgets/total_price.dart';
+import 'package:payment_card/view/Payment/payment_view.dart';
+import 'package:payment_card/view/custom_button.dart';
+import 'package:payment_card/view/my_app_bar.dart';
 
-import 'complete_button.dart';
+import '../../../utils/logo.dart';
 import 'my_drawer.dart';
 
 class MyCartViewBody extends StatelessWidget {
@@ -14,19 +15,7 @@ class MyCartViewBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SafeArea(child: Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.white,
-        elevation: 0,
-        leading: Center(child: SvgPicture.asset('assets/images/Arrow.svg',height: 24,),
-        ),
-        title: const Text(
-          'My Cart',
-          textAlign: TextAlign.center,
-          style: Styles.textStyle25
-        ),
-        centerTitle: true
-        ,
-      ),
+      appBar: MyAppBar.myAppBar(context, title: 'My Cart'),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
@@ -36,7 +25,7 @@ class MyCartViewBody extends StatelessWidget {
               SizedBox(
                 height: ScreenSize.height(context)*0.02,
               ),
-              Center(child: Image.asset('assets/images/item.png')),
+              Center(child: Image.asset(Logo.item)),
               SizedBox(
                 height: ScreenSize.height(context)*0.05,
               ),
@@ -52,13 +41,16 @@ class MyCartViewBody extends StatelessWidget {
               SizedBox(
                 height: ScreenSize.height(context)*0.02,
               ),
-             const  CompleteButton()
+               CustomButton(text: 'Complete payment', onPressed: (){
+                 Navigator.push(context, MaterialPageRoute(builder: (context)=>const PaymentView()));
+               })
             ],
           ),
         ),
       ),
     ));
   }
+
 }
 
 

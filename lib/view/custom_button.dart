@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
 
-import '../../../config/screen_size.dart';
-import '../../../utils/Styles.dart';
+import '../config/screen_size.dart';
+import '../utils/Styles.dart';
 
-class CompleteButton extends StatelessWidget {
-  const CompleteButton({
-    super.key,
-  });
-
+class CustomButton extends StatelessWidget {
+  const CustomButton({Key? key, required this.text, required this.onPressed}) : super(key: key);
+final String text;
+ final void Function() onPressed;
   @override
   Widget build(BuildContext context) {
-    return MaterialButton(
-      onPressed: (){},
+    return  MaterialButton(
+      onPressed: onPressed,
       child: Container(
         width: ScreenSize.width(context)*0.6,
         height: ScreenSize.height(context)*0.07,
@@ -21,8 +20,8 @@ class CompleteButton extends StatelessWidget {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-        child: const Center(
-          child:  Text('Complete Payment',
+        child:  Center(
+          child:  Text(text,
             style: Styles.textStyle22,),
         ),
       ),
